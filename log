@@ -1,0 +1,91 @@
+    ^
+IndentationError: unexpected indent
+>>> Post.objects.get(pk=1).like()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Post' object has no attribute 'like'
+>>> Post.objects.get(pk=1).like()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Post' object has no attribute 'like'
+  File "<console>", line 1
+    python manage.py migrate
+           ^
+SyntaxError: invalid syntax
+>>> ^Z
+
+now exiting InteractiveConsole...
+(venv) PS E:\fullstek\NewsD2\NewsPaper> python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, news, sessions
+Running migrations:
+  No migrations to apply.
+(venv) PS E:\fullstek\NewsD2\NewsPaper> python manage.py shell
+Python 3.8.10 (tags/v3.8.10:3d8993a, May  3 2021, 11:48:03) [MSC v.1928 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from news.models import *
+>>> Post.objects.get(pk=1).like()
+>>> Post.objects.get(pk=1).like()
+>>> Post.objects.get(pk=21).like() 
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "E:\fullstek\NewsD2\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "E:\fullstek\NewsD2\venv\lib\site-packages\django\db\models\query.py", line 496, in get
+    raise self.model.DoesNotExist(
+news.models.Post.DoesNotExist: Post matching query does not exist.
+>>> Post.objects.get(pk=2).like() 
+>>> Post.objects.get(pk=31).like() 
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "E:\fullstek\NewsD2\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "E:\fullstek\NewsD2\venv\lib\site-packages\django\db\models\query.py", line 496, in get
+    raise self.model.DoesNotExist(
+news.models.Post.DoesNotExist: Post matching query does not exist.
+>>> Post.objects.get(pk=3).like()  
+>>> Post.objects.get(pk=2).like() 
+>>> Post.objects.get(pk=1).like() 
+>>> Post.objects.get(pk=1).dislike() 
+>>> Post.objects.get(pk=1).dislike()
+>>> Post.objects.get(pk=1).dislike()
+>>> Post.objects.get(pk=1).dislike()
+>>> Post.objects.get(pk=3).dislike() 
+>>> Comment.objects.get(pk=1).like()
+>>> Comment.objects.get(pk=1).like()
+>>> Comment.objects.get(pk=1).like()
+>>> Comment.objects.get(pk=2).like() 
+>>> 
+>>> Comment.objects.get(pk=3).like() 
+>>> Comment.objects.get(pk=2).dislike() 
+>>> Comment.objects.get(pk=2).dislike()
+>>> Comment.objects.get(pk=2).dislike()
+>>> Author.objects.get(authorUser=User.objects.get(username='Vlad')).update_rating()  
+>>> Author.objects.get(authorUser=User.objects.get(username='Victor')).update_rating()  
+>>> Author.objects.get(authorUser=User.objects.get(username='Vlad')).author_rating      
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Author' object has no attribute 'author_rating'
+>>> Author.objects.get(authorUser=User.objects.get(username='Vlad')).rating 
+16
+>>> Author.objects.get(authorUser=User.objects.get(username='Victor')).rating 
+-8
+{'authorUser': 2, 'rating': 16}
+>>> print(best.authorUser)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'dict' object has no attribute 'authorUser'
+{'pk': 2, 'time': datetime.datetime(2022, 8, 1, 18, 9, 58, 116666, tzinfo=datetime.timezone.utc), 'postAuthor__authorUser__username': 'Vlad', 'rat
+ing': 2, 'header': 'SDD. Достоинства и недостатки.'}
+{'pk': 2, 'time': datetime.datetime(2022, 8, 1, 18, 9, 58, 116666, tzinfo=datetime.timezone.utc), 'postAuthor__authorUser__username': 'Vlad', 'rating': 2, 'header': 'SDD. Достоинства и недостатки.'}
+ing': 2, 'header': 'SDD. Достоинства и недостатки.'}
+>>>  Comment.objects.filter(commentPost__header='SDD. Достоинства и недостатки.').values('commentTime', 'commentUser__username', 'commentRating', 
+'commentText')
+<QuerySet [{'commentTime': datetime.datetime(2022, 8, 1, 18, 39, 9, 637510, tzinfo=datetime.timezone.utc), 'commentUser__username': 'Vlad', 'commentRating': 1, 'commentText': 'could have been better'}]>
+>>> Comment.objects.filter(commentPost__pk=2).values('commentTime', 'commentUser__username', 'commentRating', 'commentText')               
+<QuerySet [{'commentTime': datetime.datetime(2022, 8, 1, 18, 39, 9, 637510, tzinfo=datetime.timezone.utc), 'commentUser__username': 'Vlad', 'commentRating': 1, 'commentText': 'could have been better'}]>
+>>> Comment.objects.filter(commentPost__pk=1).values('commentTime', 'commentUser__username', 'commentRating', 'commentText')    
+<QuerySet [{'commentTime': datetime.datetime(2022, 8, 1, 18, 36, 48, 430471, tzinfo=datetime.timezone.utc), 'commentUser__username': 'Vlad', 'commentRating': 3, 'commentText': 'Congratulations!'}, {'commentTime': datetime.datetime(2022
+, 8, 1, 18, 38, 15, 389725, tzinfo=datetime.timezone.utc), 'commentUser__username': 'Victor', 'commentRating': -2, 'commentText': 'Спасибо!'}]>
+>>> ^A
