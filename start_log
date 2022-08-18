@@ -1,4 +1,4 @@
-  Создаем польтзователей
+  Создаем пользователей
 user1 = User.objects.create(username='Victor', first_name='Ivan')
 user2 = User.objects.create(username='Vlad', first_name='Petr')
   Создаем авторов
@@ -13,7 +13,7 @@ Category.objects.create(category_name='sport')
 Post.objects.create(post_author=Author.objects.get(postAuthor=User.objects.get(username='Vlad')), selection='NW', header='SDD', text='какой-то текст')
 Post.objects.create(post_author=Author.objects.get(postAuthor=User.objects.get(username='Vlad')), selection='AR', header='SDD. Достоинства и недостатки.', text='какой-то текст')
 Post.objects.create(post_author=Author.objects.get(postAuthor=User.objects.get(username='Victor')), selection='AR', header='VR в медицине', text='какой-то текст')
-  Получаем статьи икатегории
+  Получаем статьи и категории
 post1 = Post.objects.get(pk=1)
 post2 = Post.objects.get(pk=2)
 post3 = Post.objects.get(pk=3)
@@ -21,7 +21,7 @@ cat1 = Category.objects.get(pk=1)
 cat2 = Category.objects.get(pk=2)
 cat3 = Category.objects.get(pk=3)
 cat4 = Category.objects.get(pk=4)
-  Присваисваем статьям категории
+  Присваиваем статьям категории
 post1.post_category.add(cat1, cat3)
 post2.post_category.add(cat3, cat4)
 post3.post_category.add(cat1, cat2)
